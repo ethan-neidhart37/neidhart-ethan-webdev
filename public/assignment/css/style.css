@@ -5,3 +5,11 @@ input.form-control {
 body {
     padding-top: 36px;
 }
+
+.navbar-primary {
+    background-color: #3E8ACC;
+}
+
+.navbar-primary a {
+    color: white;
+}
