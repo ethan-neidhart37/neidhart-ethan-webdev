@@ -3,13 +3,21 @@ input.form-control {
 }
 
 body {
-    padding-top: 36px;
+    padding-top: 65px;
 }
 
 .navbar-primary {
     background-color: #3E8ACC;
 }
 
-.navbar-primary a {
+.navbar-primary a:link {
     color: white;
+}
+
+.navbar-primary a:visited {
+    color: white;
+}
+
+.navbar-primary a:hover {
+    color: #23527C;
 }
