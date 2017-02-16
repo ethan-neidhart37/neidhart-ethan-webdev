@@ -34,7 +34,7 @@
             var sites = [];
             for (var w in websites) {
                 var website = websites[w];
-                if (website.developerId === userId) {
+                if (website.developerId == userId) {
                     sites.push(website);
                 }
             }
@@ -44,7 +44,7 @@
         function findWebsiteById(websiteId) {
             for (var w in websites) {
                 var website = websites[w];
-                if (website._id === websiteId) {
+                if (website._id == websiteId) {
                     return angular.copy(website);
                 }
             }
@@ -54,9 +54,8 @@
         function updateWebsite(websiteId, newWebsite) {
             for (var w in websites) {
                 var website = websites[w];
-                if (website._id === websiteId) {
+                if (website._id == websiteId) {
                     websites[w].name = newWebsite.name;
-                    websites[w].developerId = newWebsite.developerId;
                     websites[w].description = newWebsite.description;
                     return website;
                 }
@@ -67,7 +66,7 @@
         function deleteWebsite(websiteId) {
             for (var w in websites) {
                 var website = websites[w];
-                if (website._id === websiteId) {
+                if (website._id == websiteId) {
                     websites.splice(w, 1);
                     return website;
                 }

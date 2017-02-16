@@ -31,7 +31,7 @@
             var webpages = [];
             for (var p in pages) {
                 var page = pages[p];
-                if (page.websiteId === websiteId) {
+                if (page.websiteId == websiteId) {
                     webpages.push(page);
                 }
             }
@@ -41,7 +41,7 @@
         function findPageById(pageId) {
             for (var p in pages) {
                 var page = pages[p];
-                if (page._id === pageId) {
+                if (page._id == pageId) {
                     return angular.copy(page);
                 }
             }
@@ -51,7 +51,7 @@
         function updatePage(pageId, newPage) {
             for (var p in pages) {
                 var page = pages[p];
-                if (page._id === pageId) {
+                if (page._id == pageId) {
                     pages[p].name = newPage.name;
                     pages[p].websiteId = newPage.websiteId;
                     pages[p].description = newPage.description;
@@ -64,7 +64,7 @@
         function deletePage(pageId) {
             for (var p in pages) {
                 var page = pages[p];
-                if (page._id === pageId) {
+                if (page._id == pageId) {
                     pages.splice(p, 1);
                     return page;
                 }

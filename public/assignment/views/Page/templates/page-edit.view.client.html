@@ -2,27 +2,27 @@
     <div class="row container-fluid">
         <div class="col-sm-4 hidden-xs">
             <div class="navbar-text pull-left">
-                <a class="navbar-link" href="#/user/{{model.userId}}/website/{{website.userId}}/page">
+                <a class="navbar-link" href="#/user/{{model.userId}}/website/{{model.websiteId}}/page">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </div>
             <div class="navbar-text pull-right">
-                <a class="navbar-link" href="#/user/{{model.userId}}/website/{{website.userId}}/page/new">
+                <a class="navbar-link" href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/new">
                     <span class="glyphicon glyphicon-plus"></span>
                 </a>
             </div>
             <div class="navbar-header">
-                <a class="navbar-brand" href="#/user/{{model.userId}}/website/{{website.userId}}/page">Pages</a>
+                <a class="navbar-brand" href="#/user/{{model.userId}}/website/{{model.websiteId}}/page">Pages</a>
             </div>
         </div>
         <div class="col-sm-8">
             <div class="navbar-text pull-left visible-xs">
-                <a class="navbar-link" href="#/user/{{model.userId}}/website/{{website.userId}}/page">
+                <a class="navbar-link" href="#/user/{{model.userId}}/website/{{model.websiteId}}/page">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </div>
             <div class="navbar-text pull-right">
-                <a class="navbar-link" ng-click="model.updatePage(page)">
+                <a class="navbar-link" ng-click="model.updatePage(model.page)">
                     <span class="glyphicon glyphicon-ok"></span>
                 </a>
             </div>
@@ -38,8 +38,8 @@
     <div class="col-sm-4 hidden-xs">
         <div ng-repeat="page in model.pages"  class="container-fluid">
             <h4>
-                <a href="#/user/{{model.userId}}/website/{{website.userId}}/page/{{page._id}}/widget">{{page.name}}</a>
-                <a href="#/user/{{model.userId}}/website/{{website.userId}}/page/{{page._id}}" class="pull-right"><span class="glyphicon glyphicon-cog"></span></a>
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}/widget">{{page.name}}</a>
+                <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}" class="pull-right"><span class="glyphicon glyphicon-cog"></span></a>
             </h4>
         </div>
     </div>
