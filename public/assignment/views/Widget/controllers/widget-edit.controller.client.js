@@ -23,5 +23,13 @@
         function getEditorTemplateUrl(type) {
             return 'views/widget/templates/editors/widget-'+type+'-editor.view.client.html';
         }
+
+        function deleteWidget() {
+            WidgetService.deleteWidget(vm.widgetId);
+        }
+
+        function updateWidget(widget) {
+            WidgetService.updateWidget(vm.widgetId, widget);
+        }
     }
 })();

@@ -12,7 +12,7 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-text pull-left">
-            <a class="navbar-link" href="#/user/:uid/website/:wid/page/:pid/widget">
+            <a class="navbar-link" href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
         </div>
@@ -26,7 +26,7 @@
 <div class="container-fluid">
     <div class="container-fluid">
         <h4>
-            <a href="widget-heading.view.client.html">Header</a>
+            <a ng-click="model.createWidget(widget, 'HEADING')">Header</a>
         </h4>
     </div>
     <div class="container-fluid">
@@ -56,12 +56,12 @@
     </div>
     <div class="container-fluid">
         <h4>
-            <a href="widget-image.view.client.html">Image</a>
+            <a ng-click="model.createWidget(widget, 'IMAGE')">Image</a>
         </h4>
     </div>
     <div class="container-fluid">
         <h4>
-            <a href="widget-youtube.view.client.html">YouTube</a>
+            <a ng-click="model.createWidget(widget, 'YOUTUBE')">YouTube</a>
         </h4>
     </div>
     <div class="container-fluid">
@@ -79,7 +79,7 @@
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
         <div class="navbar-text pull-right">
-            <a href="#/user/:uid">
+            <a href="#/user/{{model.userId}}">
                 <span class="glyphicon glyphicon-user"></span>
             </a>
         </div>
