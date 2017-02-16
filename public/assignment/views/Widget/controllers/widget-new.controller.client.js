@@ -29,7 +29,7 @@
         function createWidget(widget, type) {
             widget.widgetType = type;
             var id = WidgetService.createWidget(vm.pageId, widget);
-            $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/"+id);
+            $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget");
         }
     }
 })();

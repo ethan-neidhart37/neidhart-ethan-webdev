@@ -38,7 +38,7 @@
             var pagewidgets = [];
             for (var w in widgets) {
                 var widget = widgets[w];
-                if (widget.pageId === pageId) {
+                if (widget.pageId == pageId) {
                     pagewidgets.push(widget);
                 }
             }
@@ -48,7 +48,7 @@
         function findWidgetById(widgetId) {
             for (var w in widgets) {
                 var widget = widgets[w];
-                if (widget._id === widgetId) {
+                if (widget._id == widgetId) {
                     return angular.copy(widget);
                 }
             }
@@ -57,8 +57,8 @@
 
         function updateWidget(widgetId, newWidget) {
             for (var w in widgets) {
-                var widget = widgets[p];
-                if (widget._id === widgetId) {
+                var widget = widgets[w];
+                if (widget._id == widgetId) {
                     widgets[w] = newWidget;
                     widgets[w]._id = widgetId;
                     return widget;
@@ -70,7 +70,7 @@
         function deleteWidget(widgetId) {
             for (var w in widgets) {
                 var widget = widgets[w];
-                if (widget._id === widgetId) {
+                if (widget._id == widgetId) {
                     widgets.splice(w, 1);
                     return widget;
                 }
