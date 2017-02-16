@@ -13,27 +13,27 @@
     <div class="row container-fluid">
         <div class="col-sm-4 hidden-xs">
             <div class="navbar-text pull-left">
-                <a class="navbar-link" href="#/user/:uid/website/:wid/page">
+                <a class="navbar-link" href="#/user/{{model.userId}}/website/{{website.userId}}/page">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </div>
             <div class="navbar-text pull-right">
-                <a class="navbar-link" href="#/user/:uid/website/:wid/page/new">
+                <a class="navbar-link" href="#/user/{{model.userId}}/website/{{website.userId}}/page/new">
                     <span class="glyphicon glyphicon-plus"></span>
                 </a>
             </div>
             <div class="navbar-header">
-                <a class="navbar-brand" href="#/user/:uid/website/:wid/page">Pages</a>
+                <a class="navbar-brand" href="#/user/{{model.userId}}/website/{{website.userId}}/page">Pages</a>
             </div>
         </div>
         <div class="col-sm-8">
             <div class="navbar-text pull-left visible-xs">
-                <a class="navbar-link" href="#/user/:uid/website/:wid/page">
+                <a class="navbar-link" href="#/user/{{model.userId}}/website/{{website.userId}}/page">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </div>
             <div class="navbar-text pull-right">
-                <a class="navbar-link" href="#/user/:uid/website/:wid/page">
+                <a class="navbar-link" ng-click="model.updatePage(page)">
                     <span class="glyphicon glyphicon-ok"></span>
                 </a>
             </div>
@@ -47,34 +47,10 @@
 
 <div class="row container-fluid">
     <div class="col-sm-4 hidden-xs">
-        <div class="container-fluid">
+        <div ng-repeat="page in model.pages"  class="container-fluid">
             <h4>
-                <a href="#/user/:uid/website/:wid/page/:pid/widget">Blog Post</a>
-                <a href="#/user/:uid/website/:wid/page/:pid" class="pull-right"><span class="glyphicon glyphicon-cog"></span></a>
-            </h4>
-        </div>
-        <div class="container-fluid">
-            <h4>
-                <a href="#/user/:uid/website/:wid/page/:pid/widget">Blogs</a>
-                <a href="#/user/:uid/website/:wid/page/:pid" class="pull-right"><span class="glyphicon glyphicon-cog"></span></a>
-            </h4>
-        </div>
-        <div class="container-fluid">
-            <h4>
-                <a href="#/user/:uid/website/:wid/page/:pid/widget">Home</a>
-                <a href="#/user/:uid/website/:wid/page/:pid" class="pull-right"><span class="glyphicon glyphicon-cog"></span></a>
-            </h4>
-        </div>
-        <div class="container-fluid">
-            <h4>
-                <a href="#/user/:uid/website/:wid/page/:pid/widget">About</a>
-                <a href="#/user/:uid/website/:wid/page/:pid" class="pull-right"><span class="glyphicon glyphicon-cog"></span></a>
-            </h4>
-        </div>
-        <div class="container-fluid">
-            <h4>
-                <a href="#/user/:uid/website/:wid/page/:pid/widget">Contact Us</a>
-                <a href="#/user/:uid/website/:wid/page/:pid" class="pull-right"><span class="glyphicon glyphicon-cog"></span></a>
+                <a href="#/user/{{model.userId}}/website/{{website.userId}}/page/{{page._id}}/widget">{{page.name}}</a>
+                <a href="#/user/{{model.userId}}/website/{{website.userId}}/page/{{page._id}}" class="pull-right"><span class="glyphicon glyphicon-cog"></span></a>
             </h4>
         </div>
     </div>
@@ -82,22 +58,22 @@
         <form>
             <div class="form-group">
                 <label for="name">Name</label>
-                <input type="text" class="form-control" id="name" placeholder="Page Name" value="Blog Post">
+                <input ng-model="model.page.name" type="text" class="form-control" id="name" placeholder="Page Name" value="Blog Post">
             </div>
             <div class="form-group">
                 <label for="title">Title</label>
-                <input type="text" class="form-control" id="title" placeholder="Page Title">
+                <input ng-model="model.page.description" type="text" class="form-control" id="title" placeholder="Page Title">
             </div>
         </form>
         <a class="btn btn-danger  btn-block"
-           href="#/user/:uid/website/:wid/page">Delete</a>
+           ng-click="model.deletePage()">Delete</a>
     </div>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">
     <div class="container-fluid">
         <div class="navbar-text pull-right">
-            <a href="#/user/:uid">
+            <a href="#/user/{{model.userId}}">
                 <span class="glyphicon glyphicon-user"></span>
             </a>
         </div>

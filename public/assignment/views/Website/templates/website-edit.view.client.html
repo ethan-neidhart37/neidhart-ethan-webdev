@@ -13,27 +13,27 @@
     <div class="row container-fluid">
         <div class="col-sm-4 hidden-xs">
             <div class="navbar-text pull-left">
-                <a class="navbar-link" href="#/user/:uid/website">
+                <a class="navbar-link" href="#/user/{{model.userId}}/website">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </div>
             <div class="navbar-text pull-right">
-                <a class="navbar-link" href="#/user/:uid/website/new">
+                <a class="navbar-link" href="#/user/{{model.userId}}/website/new">
                     <span class="glyphicon glyphicon-plus"></span>
                 </a>
             </div>
             <div class="navbar-header">
-                <a class="navbar-brand" href="#/user/:uid/website">Websites</a>
+                <a class="navbar-brand" href="#/user/{{model.userId}}/website">Websites</a>
             </div>
         </div>
         <div class="col-sm-8">
             <div class="navbar-text pull-left visible-xs">
-                <a class="navbar-link" href="#/user/:uid/website">
+                <a class="navbar-link" href="#/user/{{model.userId}}/website">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </div>
             <div class="navbar-text pull-right">
-                <a class="navbar-link" href="#/user/:uid/website">
+                <a class="navbar-link" ng-click="model.updateWebsite(website)">
                     <span class="glyphicon glyphicon-ok"></span>
                 </a>
             </div>
@@ -47,28 +47,10 @@
 
 <div class="row container-fluid">
     <div class="col-sm-4 hidden-xs">
-        <div class="container-fluid">
+        <div ng-repeat="website in model.websites"  class="container-fluid">
             <h4>
-                <a href="#/user/:uid/website/:wid/page">Blogging App</a>
-                <a href="#/user/:uid/website/:wid" class="pull-right"><span class="glyphicon glyphicon-cog"></span></a>
-            </h4>
-        </div>
-        <div class="container-fluid">
-            <h4>
-                <a href="#/user/:uid/website/:wid/page">Address Book App</a>
-                <a href="#/user/:uid/website/:wid" class="pull-right"><span class="glyphicon glyphicon-cog"></span></a>
-            </h4>
-        </div>
-        <div class="container-fluid">
-            <h4>
-                <a href="#/user/:uid/website/:wid/page">Script Testing App</a>
-                <a href="#/user/:uid/website/:wid" class="pull-right"><span class="glyphicon glyphicon-cog"></span></a>
-            </h4>
-        </div>
-        <div class="container-fluid">
-            <h4>
-                <a href="#/user/:uid/website/:wid/page">Blogger</a>
-                <a href="#/user/:uid/website/:wid" class="pull-right"><span class="glyphicon glyphicon-cog"></span></a>
+                <a href="#/user/{{model.userId}}/website/{{website._id}}/page">{{website.name}}</a>
+                <a href="#/user/{{model.userId}}/website/:{{website._id}}" class="pull-right"><span class="glyphicon glyphicon-cog"></span></a>
             </h4>
         </div>
     </div>
@@ -76,22 +58,22 @@
         <form>
             <div class="form-group">
                 <label for="name">Name</label>
-                <input type="text" class="form-control" id="name" placeholder="Name" value="Blogger">
+                <input ng-model="model.website.name" type="text" class="form-control" id="name" placeholder="Name" value="Blogger">
             </div>
             <div class="form-group">
                 <label for="description">Description</label>
-                <textarea class="form-control" rows="5" id="description" placeholder="Description">Blogger is a blog-publishing service that allows multi-user blogs with time-stamped entries. It was developed by Pyra Labs, which was bought by Google in 2003. Generally, the blogs are hosted by Google at a subdomain of blogspot.com. Blogs can also be hosted in the registered custom domain of the blogger (like www.example.com).[4] A user can have up to 100 blogs per account.</textarea>
+                <textarea ng-model="model.website.description" class="form-control" rows="5" id="description" placeholder="Description">Blogger is a blog-publishing service that allows multi-user blogs with time-stamped entries. It was developed by Pyra Labs, which was bought by Google in 2003. Generally, the blogs are hosted by Google at a subdomain of blogspot.com. Blogs can also be hosted in the registered custom domain of the blogger (like www.example.com).[4] A user can have up to 100 blogs per account.</textarea>
             </div>
         </form>
         <a class="btn btn-danger  btn-block"
-           href="#/user/:uid/website">Delete</a>
+           ng-click="model.deleteWebsite()">Delete</a>
     </div>
 </div>
 
 <nav class="navbar navbar-primary navbar-fixed-bottom">
     <div class="container-fluid">
         <div class="navbar-text pull-right">
-            <a class="navbar-link" href="#/user/:uid">
+            <a class="navbar-link" href="#/user/{{model.userId}}">
                 <span class="glyphicon glyphicon-user"></span>
             </a>
         </div>

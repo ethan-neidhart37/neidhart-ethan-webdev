@@ -7,7 +7,7 @@
         .module("WebAppMaker")
         .controller("EditPageController", EditPageController);
 
-    function PEditageController($routeParams, $location, PageService) {
+    function EditPageController($routeParams, $location, PageService) {
         var vm = this;
         vm.userId = $routeParams.uid;
         vm.websiteId = $routeParams.wid;
@@ -19,6 +19,10 @@
             vm.page = PageService.findPageById(vm.pageId);
         }
         init();
+
+        function updatePage(page) {
+            PageService.updatePage(vm.pageId, page);
+        }
 
         function deletePage () {
             PageService.deletePage(vm.pageId);

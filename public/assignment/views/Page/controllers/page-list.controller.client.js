@@ -11,6 +11,10 @@
         var vm = this;
         vm.userId = $routeParams.uid;
         vm.websiteId = $routeParams.wid;
-        vm.pages = PageService.findPagesByWebsiteId(vm.websiteId);
+
+        function init() {
+            vm.pages = PageService.findPagesByWebsiteId(vm.websiteId);
+        }
+        init();
     }
 })();

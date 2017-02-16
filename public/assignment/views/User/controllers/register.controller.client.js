@@ -13,7 +13,7 @@
 
             function register(user) {
                 UserService.createUser(user);
-                $location.url('/profile/' + user._id);
+                $location.url('/user/' + user._id);
             }
         }
 })();

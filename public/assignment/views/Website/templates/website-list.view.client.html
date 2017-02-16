@@ -12,12 +12,12 @@
 <nav class="navbar navbar-primary navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-text pull-right">
-            <a class="navbar-link" href="#/user/:uid/website/new">
+            <a class="navbar-link" href="#/user/{{model.userId}}/website/new">
                 <span class="glyphicon glyphicon-plus"></span>
             </a>
         </div>
         <div class="navbar-text pull-left">
-            <a class="navbar-link" href="#/user/:uid/">
+            <a class="navbar-link" href="#/user/{{model.userId}}/">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
         </div>
@@ -29,28 +29,10 @@
 
 
 <div class="container-fluid">
-    <div class="container-fluid">
+    <div ng-repeat="website in model.websites"  class="container-fluid">
         <h4>
-            <a href="#/user/:uid/website/:wid/page">Address Book App</a>
-            <a href="#/user/:uid/website/:wid" class="pull-right"><span class="glyphicon glyphicon-cog"></span></a>
-        </h4>
-    </div>
-    <div class="container-fluid">
-        <h4>
-            <a href="#/user/:uid/website/:wid/page">Blogger</a>
-            <a href="#/user/:uid/website/:wid" class="pull-right"><span class="glyphicon glyphicon-cog"></span></a>
-        </h4>
-    </div>
-    <div class="container-fluid">
-        <h4>
-            <a href="#/user/:uid/website/:wid/page">Blogging App</a>
-            <a href="#/user/:uid/website/:wid" class="pull-right"><span class="glyphicon glyphicon-cog"></span></a>
-        </h4>
-    </div>
-    <div class="container-fluid">
-        <h4>
-            <a href="#/user/:uid/website/:wid/page">Script Testing App</a>
-            <a href="#/user/:uid/website/:wid" class="pull-right"><span class="glyphicon glyphicon-cog"></span></a>
+            <a href="#/user/{{model.userId}}/website/{{website._id}}/page">{{website.name}}</a>
+            <a href="#/user/{{model.userId}}/website/{{website._id}}" class="pull-right"><span class="glyphicon glyphicon-cog"></span></a>
         </h4>
     </div>
 </div>
@@ -58,7 +40,7 @@
 <nav class="navbar navbar-primary navbar-fixed-bottom">
     <div class="container-fluid">
         <div class="navbar-text pull-right">
-            <a class="navbar-link" href="#/user/:uid">
+            <a class="navbar-link" href="#/user/{{model.userId}}">
                 <span class="glyphicon glyphicon-user"></span>
             </a>
         </div>

@@ -29,6 +29,7 @@
 
         function createWidget(pageId, widget) {
             widget.pageId = pageId;
+            widget._id = (new Date()).getTime();
             widgets.push(widget);
         }
 

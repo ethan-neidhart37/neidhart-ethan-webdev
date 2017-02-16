@@ -28,14 +28,32 @@
 </nav>
 
 <div class="container-fluid">
-    <div>
+
+    <div ng-repeat="page in model.pages"  class="container-fluid">
+        <h4>
+            <a href="#/user/:uid/website/:wid/page/:pid/widget">{{page.name}}</a>
+            <a href="#/user/:uid/website/:wid/page/:pid" class="pull-right"><span class="glyphicon glyphicon-cog"></span></a>
+        </h4>
+    </div>
+
+    <div ng-repeat="widget in model.widgets">
         <div class="widget-toolbar">
-            <a href="widget-heading.view.client.html">
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/{{widget._id}}">
                 <span class="glyphicon glyphicon-cog"></span>
             </a>
             <span class="glyphicon glyphicon-menu-hamburger"></span>
         </div>
-        <h1>SHOW ME WHAT YOU GOT</h1>
+        <div ng-switch="widget.widgetType">
+            <div ng-switch-when="HEADING">
+                <ng-include src="'views/widget/templates/widget-heading.view.client.html'"></ng-include>
+            </div>
+            <div ng-switch-when="IMAGE">
+                <ng-include src="'views/widget/templates/widget-image.view.client.html'"></ng-include>
+            </div>
+            <div ng-switch-when="YOUTUBE">
+                <ng-include src="'views/widget/templates/widget-youtube.view.client.html'"></ng-include>
+            </div>
+        </div>
     </div>
 
     <div>
