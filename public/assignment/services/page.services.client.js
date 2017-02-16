@@ -13,11 +13,11 @@
             {"_id": "543", "name": "Post 3", "websiteId": "456", "description": "Lorem"}
         ];
         var api = {
-            "createPage"      : createPage,
-            "findPagesByWebsite" : findPagesByUser,
-            "findPageById"    : findPageById,
-            "updatePage"      : updatePage,
-            "deletePage"      : deletePage
+            "createPage"           : createPage,
+            "findPagesByWebsiteId" : findPagesByWebsiteId,
+            "findPageById"         : findPageById,
+            "updatePage"           : updatePage,
+            "deletePage"           : deletePage
         };
         return api;
 
