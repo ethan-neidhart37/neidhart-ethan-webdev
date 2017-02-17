@@ -19,9 +19,9 @@
         vm.update = function (newUser) {
             var user = UserService.updateUser(vm.userId, newUser);
             if(user == null) {
-                vm.error = "unable to update user";
+                vm.error = "Unable to update user.";
             } else {
-                vm.message = "user successfully updated"
+                vm.message = "User successfully updated."
             }
         };
     }

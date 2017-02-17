@@ -13,6 +13,15 @@
 
 
 <div class="container-fluid">
+
+    <div ng-show="model.error" class="alert alert-danger">
+        {{model.error}}
+    </div>
+
+    <div ng-show="model.message" class="alert alert-success">
+        {{model.message}}
+    </div>
+
     <form>
         <div class="form-group">
             <label for="username">Username</label>
