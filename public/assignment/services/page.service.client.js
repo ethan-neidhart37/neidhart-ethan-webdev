@@ -35,7 +35,12 @@
                     webpages.push(page);
                 }
             }
-            return angular.copy(webpages);
+
+            if (webpages) {
+                res.send(webpages);
+            } else {
+                res.sendStatus(404).send("Pages not found for website: " + websiteId);
+            }
         }
 
         function findPageById(pageId) {
