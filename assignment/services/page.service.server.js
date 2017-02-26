@@ -29,7 +29,7 @@ module.exports = function (app) {
         var webpages = [];
         for (var p in pages) {
             var page = pages[p];
-            if (page.developerId == websiteId) {
+            if (page.websiteId == websiteId) {
                 webpages.push(page);
             }
         }
@@ -57,6 +57,7 @@ module.exports = function (app) {
         for (var p in pages) {
             var page = pages[p];
             if (page._id == pageId) {
+                var newPage= req.body;
                 pages[p].name = newPage.name;
                 pages[p].description = newPage.description;
                 res.sendStatus(200);
@@ -67,7 +68,7 @@ module.exports = function (app) {
     }
 
     function deletePage(req, res) {
-        var websiteId = req.params["websiteId"];
+        var pageId = req.params["pageId"];
         for (var p in pages) {
             if (pages[p]._id == pageId) {
                 pages.splice(p, 1);
