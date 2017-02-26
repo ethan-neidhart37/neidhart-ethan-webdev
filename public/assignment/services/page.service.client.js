@@ -22,59 +22,22 @@
         return api;
 
         function createPage(websiteId, page) {
-            page.websiteId = websiteId;
-            page._id = (new Date()).getTime();
-            pages.push(page);
+            return $http.post("/api/website/" + websiteId + "/page", page);
         }
 
         function findPagesByWebsiteId(websiteId) {
-            var webpages = [];
-            for (var p in pages) {
-                var page = pages[p];
-                if (page.websiteId == websiteId) {
-                    webpages.push(page);
-                }
-            }
-
-            if (webpages) {
-                res.send(webpages);
-            } else {
-                res.sendStatus(404).send("Pages not found for website: " + websiteId);
-            }
+            return $http.get("/api/website/" + websiteId + "/page");
         }
 
         function findPageById(pageId) {
-            for (var p in pages) {
-                var page = pages[p];
-                if (page._id == pageId) {
-                    return angular.copy(page);
-                }
-            }
-            return null;
+            return $http.get("/api/page/" + pageId);
         }
 
         function updatePage(pageId, newPage) {
-            for (var p in pages) {
-                var page = pages[p];
-                if (page._id == pageId) {
-                    pages[p].name = newPage.name;
-                    pages[p].websiteId = newPage.websiteId;
-                    pages[p].description = newPage.description;
-                    return page;
-                }
-            }
-            return null;
+            return $http.put("/api/page/" + pageId, newPage);
         }
 
         function deletePage(pageId) {
-            for (var p in pages) {
-                var page = pages[p];
-                if (page._id == pageId) {
-                    pages.splice(p, 1);
-                    return page;
-                }
-            }
-            return null;
-        }
+            return $http.delete("/api/page/" + pageId);
     }
 })();

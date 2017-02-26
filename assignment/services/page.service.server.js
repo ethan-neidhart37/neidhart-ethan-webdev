@@ -9,13 +9,10 @@ module.exports = function (app) {
     app.put("api/page/:pageId", updatePage);
     app.delete("api/page/:pageId", deletePage);
 
-    var websites = [
-        {"_id": "123", "name": "Facebook",    "developerId": "456", "description": "Lorem"},
-        {"_id": "234", "name": "Tweeter",     "developerId": "456", "description": "Lorem"},
-        {"_id": "456", "name": "Gizmodo",     "developerId": "456", "description": "Lorem"},
-        {"_id": "567", "name": "Tic Tac Toe", "developerId": "123", "description": "Lorem"},
-        {"_id": "678", "name": "Checkers",    "developerId": "123", "description": "Lorem"},
-        {"_id": "789", "name": "Chess",       "developerId": "234", "description": "Lorem"}
+    var pages = [
+        {"_id": "321", "name": "Post 1", "websiteId": "456", "description": "Lorem"},
+        {"_id": "432", "name": "Post 2", "websiteId": "456", "description": "Lorem"},
+        {"_id": "543", "name": "Post 3", "websiteId": "456", "description": "Lorem"}
     ];
 
     function createPage(req, res) {
@@ -39,16 +36,16 @@ module.exports = function (app) {
         if(sites) {
             res.send(sites);
         } else {
-            res.sendStatus(404).send("Pages not found for user: " + userId);
+            res.sendStatus(404).send("Pages not found for website: " + websiteId);
         }
     }
 
     function findPageById(req, res) {
-        var websiteId = req.params["websiteId"];
-        for (var w in websites) {
-            var website = websites[w];
-            if (website._id == websiteId) {
-                res.send(website);
+        var pageId = req.params["pageId"];
+        for (var p in pages) {
+            var page = pages[p];
+            if (page._id == pageId) {
+                res.send(page);
                 return;
             }
         }
@@ -56,13 +53,12 @@ module.exports = function (app) {
     }
 
     function updatePage(req, res) {
-        var websiteId = req.params["websiteId"];
-        for (var w in websites) {
-            var website = websites[w];
-            if (website._id == websiteId) {
-                var newPage = req.body;
-                websites[w].name = newPage.name;
-                websites[w].description = newPage.description;
+        var pageId = req.params["pageId"];
+        for (var p in pages) {
+            var page = pages[p];
+            if (page._id == pageId) {
+                pages[p].name = newPage.name;
+                pages[p].description = newPage.description;
                 res.sendStatus(200);
                 return;
             }
@@ -72,9 +68,9 @@ module.exports = function (app) {
 
     function deletePage(req, res) {
         var websiteId = req.params["websiteId"];
-        for (var w in websites) {
-            if (websites[w]._id == websiteId) {
-                websites.splice(w, 1);
+        for (var p in pages) {
+            if (pages[p]._id == pageId) {
+                pages.splice(p, 1);
                 res.sendStatus(200);
                 return;
             }
