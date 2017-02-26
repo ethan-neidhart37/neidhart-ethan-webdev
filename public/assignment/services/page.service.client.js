@@ -39,5 +39,6 @@
 
         function deletePage(pageId) {
             return $http.delete("/api/page/" + pageId);
+        }
     }
 })();
