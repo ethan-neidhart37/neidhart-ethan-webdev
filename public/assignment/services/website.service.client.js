@@ -37,11 +37,11 @@
         }
 
         function updateWebsite(websiteId, newWebsite) {
-            $http.put("/api/website/" + websiteId, newWebsite);
+            return $http.put("/api/website/" + websiteId, newWebsite);
         }
 
         function deleteWebsite(websiteId) {
-            $http.delete("/api/website/" + websiteId);
+            return $http.delete("/api/website/" + websiteId);
         }
     }
 })();
