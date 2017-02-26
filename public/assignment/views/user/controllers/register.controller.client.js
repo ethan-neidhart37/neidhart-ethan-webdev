@@ -12,8 +12,21 @@
             vm.register = register;
 
             function register(user) {
-                UserService.createUser(user);
-                $location.url('/user/' + user._id);
+                UserService
+                    .findUserByUsername(user.username)
+                    .success(function (user) {
+                        vm.error = "That username is already taken.";
+                    })
+                    .error(function() {
+                        UserService
+                            .createUser(user)
+                            .success(function(user) {
+                                $location.url('/user/' + user._id);
+                            })
+                            .error(function() {
+                                vm.error = "Could not register user.";
+                            });
+                    });
             }
         }
 })();
