@@ -33,8 +33,8 @@ module.exports = function (app) {
                 webpages.push(page);
             }
         }
-        if(sites) {
-            res.send(sites);
+        if(webpages) {
+            res.send(webpages);
         } else {
             res.status(404).send("Pages not found for website: " + websiteId);
         }

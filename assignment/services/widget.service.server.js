@@ -39,7 +39,7 @@ module.exports = function (app) {
                 pagewidgets.push(widget);
             }
         }
-        if(sites) {
+        if(pagewidgets) {
             res.send(pagewidgets);
         } else {
             res.status(404).send("Widgets not found for page: " + pageId);
