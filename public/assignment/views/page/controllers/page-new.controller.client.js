@@ -14,13 +14,26 @@
         vm.createPage = createPage;
 
         function init() {
-            vm.pages = PageService.findPagesByWebsiteId(vm.websiteId);
+            PageService
+                .findPagesByWebsiteId(vm.websiteId)
+                .success(function (pages) {
+                    vm.pages = pages;
+                })
+                .error(function (err) {
+                    vm.err = err;
+                });
         }
         init();
 
         function createPage (page) {
-            PageService.createPage(vm.websiteId, page);
-            $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
+            PageService
+                .createPage(vm.websiteId, page)
+                .success(function () {
+                    $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page");
+                })
+                .error(function () {
+                    vm.error = "Could not create page.";
+                });
         }
     }
 })();
