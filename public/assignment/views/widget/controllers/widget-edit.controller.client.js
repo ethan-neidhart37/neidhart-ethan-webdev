@@ -30,7 +30,7 @@
         init();
 
         function getEditorTemplateUrl(type) {
-            return 'views/widget/templates/editors/widget-'+type+'-editor.view.client.html';
+            return 'views/widget/templates/editors/widget-' + type + '-edit.view.client.html';
         }
 
         function deleteWidget() {

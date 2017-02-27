@@ -30,18 +30,18 @@
         init();
 
         function getEditorTemplateUrl(type) {
-            return 'views/widget/templates/editors/widget-'+type+'-editor.view.client.html';
+            return 'views/widget/templates/editors/widget-' + type + '-edit.view.client.html';
         }
 
         function createWidget(widget, type) {
             widget.widgetType = type;
             WidgetService
                 .createWidget(vm.pageId, widget)
-                .success(function () {
-                    $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget");
+                .success(function (newWidget) {
+                    $location.url("/user/" + vm.userId + "/website/" + vm.websiteId + "/page/" + vm.pageId + "/widget/" + newWidget._id);
                 })
-                .error(function () {
-                    vm.error = "Could not create widget.";
+                .error(function (err) {
+                    vm.error = err;
                 });
         }
     }

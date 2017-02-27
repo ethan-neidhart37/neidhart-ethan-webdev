@@ -61,7 +61,7 @@ module.exports = function (app) {
     function updateWidget(req, res) {
         var widgetId = req.params["widgetId"];
         for (var w in widgets) {
-            var widget = widgets[p];
+            var widget = widgets[w];
             if (widget._id == widgetId) {
                 var newWidget = req.body;
                 widgets[w].name = newWidget.name;
