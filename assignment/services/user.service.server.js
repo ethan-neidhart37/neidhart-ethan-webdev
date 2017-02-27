@@ -3,11 +3,12 @@
  */
 
 module.exports = function (app) {
-    app.post("api/user", createUser);
-    app.get("api/user", findUser);
-    app.get("api/user/:userId", findUserById);
-    app.put("api/user/:userId", updateUser);
-    app.delete("api/user/:userId", deleteUser);
+    console.log("Loaded user service.");
+    app.post("/api/user", createUser);
+    app.get("/api/user", findUser);
+    app.get("/api/user/:userId", findUserById);
+    app.put("/api/user/:userId", updateUser);
+    app.delete("/api/user/:userId", deleteUser);
 
 
     var users = [
@@ -25,6 +26,7 @@ module.exports = function (app) {
     }
 
     function findUser(req, res) {
+        console.log("Finding user");
         var username = req.query['username'];
         var password = req.query['password'];
         if(username && password) {

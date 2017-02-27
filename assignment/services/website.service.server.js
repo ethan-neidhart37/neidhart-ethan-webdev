@@ -3,11 +3,11 @@
  */
 
 module.exports = function (app) {
-    app.post("api/user/:userId/website", createWebsite);
-    app.get("api/user/:userId/website", findWebsitesByUser);
-    app.get("api/website/:websiteId", findWebsiteById);
-    app.put("api/website/:websiteId", updateWebsite);
-    app.delete("api/website/:websiteId", deleteWebsite);
+    app.post("/api/user/:userId/website", createWebsite);
+    app.get("/api/user/:userId/website", findWebsitesByUser);
+    app.get("/api/website/:websiteId", findWebsiteById);
+    app.put("/api/website/:websiteId", updateWebsite);
+    app.delete("/api/website/:websiteId", deleteWebsite);
 
     var websites = [
         {"_id": "123", "name": "Facebook",    "developerId": "456", "description": "Lorem"},
