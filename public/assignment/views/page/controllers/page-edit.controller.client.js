@@ -25,7 +25,7 @@
                     vm.err = err;
                 });
             PageService
-                .findPagesById(vm.pageId)
+                .findPageById(vm.pageId)
                 .success(function (page) {
                     vm.page = page;
                 })
