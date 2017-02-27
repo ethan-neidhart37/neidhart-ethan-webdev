@@ -36,7 +36,7 @@ module.exports = function (app) {
         if(sites) {
             res.send(sites);
         } else {
-            res.sendStatus(404).send("Pages not found for website: " + websiteId);
+            res.status(404).send("Pages not found for website: " + websiteId);
         }
     }
 
@@ -49,7 +49,7 @@ module.exports = function (app) {
                 return;
             }
         }
-        res.sendStatus(404).send({});
+        res.status(404).send({});
     }
 
     function updatePage(req, res) {

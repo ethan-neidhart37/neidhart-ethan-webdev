@@ -39,7 +39,7 @@ module.exports = function (app) {
         if(sites) {
             res.send(sites);
         } else {
-            res.sendStatus(404).send("Websites not found for user: " + userId);
+            res.status(404).send("Websites not found for user: " + userId);
         }
     }
 
@@ -52,7 +52,7 @@ module.exports = function (app) {
                 return;
             }
         }
-        res.sendStatus(404).send({});
+        res.status(404).send({});
     }
 
     function updateWebsite(req, res) {

@@ -3,7 +3,6 @@
  */
 
 module.exports = function (app) {
-    console.log("Loaded user service.");
     app.post("/api/user", createUser);
     app.get("/api/user", findUser);
     app.get("/api/user/:userId", findUserById);
@@ -26,7 +25,6 @@ module.exports = function (app) {
     }
 
     function findUser(req, res) {
-        console.log("Finding user");
         var username = req.query['username'];
         var password = req.query['password'];
         if(username && password) {
@@ -45,7 +43,7 @@ module.exports = function (app) {
         if(user) {
             res.send(user);
         } else {
-            res.sendStatus(404).send("User not found for username: " + username);
+            res.status(404).send("User not found for username: " + username + " and password: " + password);
         }
     }
 
@@ -57,7 +55,7 @@ module.exports = function (app) {
         if(user) {
             res.send(user);
         } else {
-            res.sendStatus(404).send("User not found for username: " + username + " and password: " + password);
+            res.status(404).send("User not found for username: " + username);
         }
     }
 
@@ -70,7 +68,7 @@ module.exports = function (app) {
                 return;
             }
         }
-        res.sendStatus(404).send({});
+        res.status(404).send({});
     }
 
     function updateUser(req, res) {

@@ -42,7 +42,7 @@ module.exports = function (app) {
         if(sites) {
             res.send(pagewidgets);
         } else {
-            res.sendStatus(404).send("Widgets not found for page: " + pageId);
+            res.status(404).send("Widgets not found for page: " + pageId);
         }
     }
 
@@ -55,7 +55,7 @@ module.exports = function (app) {
                 return;
             }
         }
-        res.sendStatus(404).send({});
+        res.status(404).send({});
     }
 
     function updateWidget(req, res) {
