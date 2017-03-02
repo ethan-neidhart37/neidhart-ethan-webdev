@@ -3,7 +3,10 @@
  */
 
 module.exports = function (app) {
+    var multer = require('multer'); // npm install multer --save
+    var upload = multer({ dest: __dirname+'/../../public/uploads' });
     app.post("/api/page/:pageId/widget", createWidget);
+    app.post("/api/upload", upload.single('myFile'), uploadImage);
     app.get("/api/page/:pageId/widget", findWidgetsByPageId);
     app.get("/api/widget/:widgetId", findWidgetById);
     app.put("/api/widget/:widgetId", updateWidget);
@@ -31,6 +34,32 @@ module.exports = function (app) {
         res.json(newWidget);
     }
 
+    function uploadImage(req, res) {
+
+        var widgetId      = req.body.widgetId;
+        var width         = req.body.width;
+        var myFile        = req.file;
+
+        var userId = req.body.userId;
+        var websiteId = req.body.websiteId;
+        var pageId = req.body.pageId;
+
+        var originalname  = myFile.originalname; // file name on user's computer
+        var filename      = myFile.filename;     // new file name in upload folder
+        var path          = myFile.path;         // full path of uploaded file
+        var destination   = myFile.destination;  // folder where file is saved to
+        var size          = myFile.size;
+        var mimetype      = myFile.mimetype;
+
+        widget = getWidgetById(widgetId);
+        widget.url = '/uploads/' + filename;
+
+        var callbackUrl   = "/assignment/#/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget";
+
+        res.redirect(callbackUrl);
+    }
+
+
     function findWidgetsByPageId(req, res) {
         var pageId = req.params["pageId"];
         var pagewidgets = [];
@@ -47,16 +76,24 @@ module.exports = function (app) {
         }
     }
 
-    function findWidgetById(req, res) {
-        var widgetId = req.params["widgetId"];
+    function getWidgetById(widgetId) {
         for (var w in widgets) {
             var widget = widgets[w];
             if (widget._id == widgetId) {
-                res.send(widget);
-                return;
+                return widget;
             }
         }
-        res.status(404).send({});
+        return null;
+    }
+
+    function findWidgetById(req, res) {
+        var widgetId = req.params["widgetId"];
+        var widget = getWidgetById(widgetId);
+        if (widget != null) {
+            res.send(widget);
+        } else {
+            res.status(404).send({});
+        }
     }
 
     function updateWidget(req, res) {
