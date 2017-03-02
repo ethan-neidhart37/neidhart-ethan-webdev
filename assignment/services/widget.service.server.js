@@ -95,17 +95,12 @@ module.exports = function (app) {
     }
 
     function sortWidget(req, res) {
-        console.log("sorting");
         var pageId = req.params["pageId"];
         var startIndex = req.query['initial'];
         var endIndex = req.query['final'];
-        console.log(widgets);
-        console.log(startIndex);
-        console.log(endIndex);
         var widget = widgets[startIndex];
         widgets.splice(startIndex, 1);
         widgets.splice(endIndex, 0, widget);
-        console.log(widgets);
         res.sendStatus(200);
     }
 
