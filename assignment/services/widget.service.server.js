@@ -7,6 +7,7 @@ module.exports = function (app) {
     app.get("/api/page/:pageId/widget", findWidgetsByPageId);
     app.get("/api/widget/:widgetId", findWidgetById);
     app.put("/api/widget/:widgetId", updateWidget);
+    app.put("/api/page/:pageId/widget", sortWidget);
     app.delete("/api/widget/:widgetId", deleteWidget);
 
     var widgets = [
@@ -91,6 +92,21 @@ module.exports = function (app) {
             }
         }
         res.sendStatus(404);
+    }
+
+    function sortWidget(req, res) {
+        console.log("sorting");
+        var pageId = req.params["pageId"];
+        var startIndex = req.query['initial'];
+        var endIndex = req.query['final'];
+        console.log(widgets);
+        console.log(startIndex);
+        console.log(endIndex);
+        var widget = widgets[startIndex];
+        widgets.splice(startIndex, 1);
+        widgets.splice(endIndex, 0, widget);
+        console.log(widgets);
+        res.sendStatus(200);
     }
 
     function deleteWidget(req, res) {
