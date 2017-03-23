@@ -170,8 +170,8 @@ module.exports = function (app, widgetModel) {
 
     function sortWidget(req, res) {
         var pageId = req.params["pageId"];
-        var startIndex = req.query['initial'];
-        var endIndex = req.query['final'];
+        var startIndex = req.query['start'];
+        var endIndex = req.query['end'];
 
         widgetModel
             .reorderWidget(pageId, startIndex, endIndex)
