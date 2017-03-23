@@ -6,7 +6,12 @@
         </div>
         <div class="form-group">
             <label for="text">Text</label>
-            <textarea ng-model="model.widget.text" class="form-control" rows="5" id="text" placeholder="Text"></textarea>
+            <!--<textarea ng-model="model.widget.text" class="form-control" rows="5" id="text" placeholder="Text"></textarea>-->
+            <div ng-model="model.widget.text" text-angular id="text"
+                 text-angular-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'],
+                    ['ul','ol'],['justifyLeft','justifyCenter','justifyRight','justifyFull'],
+                    ['indent','outdent'],['html']]">
+            </div>
         </div>
     </form>
 
