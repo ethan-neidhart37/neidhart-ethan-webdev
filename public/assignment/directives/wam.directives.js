@@ -4,7 +4,7 @@
 
 (function() {
     angular
-        .module("wamDirectives")
+        .module("WebAppMaker")
         .directive("wamSortable", makeSortable);
 
     function makeSortable($routeParams, $http) {
