@@ -16,4 +16,6 @@ module.exports = function () {
         websites: [Website],
         dateCreated: Date
     }, {collection: 'assignment.user'});
+
+    return UserSchema;
 };
