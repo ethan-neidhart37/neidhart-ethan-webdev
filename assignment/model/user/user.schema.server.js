@@ -2,7 +2,6 @@
  * Created by Ethan on 3/22/2017.
  */
 
-
 module.exports = function () {
     var mongoose = require('mongoose');
 
@@ -13,9 +12,9 @@ module.exports = function () {
         lastName: String,
         email: String,
         phone: String,
-        websites: [Website],
-        dateCreated: Date
-    }, {collection: 'assignment.user'});
+        websites: [{type: mongoose.Schema.Types.ObjectId, ref: 'WebsiteModel'}],
+        dateCreated: {type: Date, default: Date.now()}
+    }, {collection: 'assignment.users'});
 
     return UserSchema;
 };

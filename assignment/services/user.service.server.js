@@ -52,7 +52,7 @@ module.exports = function (app, userModel) {
             .then(function(user) {
                 res.send(user);
             }, function(error) {
-                res.status(500).send(error);
+                res.status(404).send(error);
             });
 
         // var user = users.find(function (user) {
@@ -73,7 +73,7 @@ module.exports = function (app, userModel) {
             .then(function(user) {
                 res.send(user);
             }, function(error) {
-                res.status(500).send(error);
+                res.status(404).send(error);
             });
 
         // var user = users.find(function (user) {
@@ -94,7 +94,7 @@ module.exports = function (app, userModel) {
             .then(function(user) {
                 res.send(user);
             }, function(error) {
-                res.status(500).send(error);
+                res.status(404).send(error);
             });
 
         // for (var u in users) {
