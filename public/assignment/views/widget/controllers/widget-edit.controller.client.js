@@ -4,7 +4,7 @@
 
 (function(){
     angular
-        .module("WebAppMaker")
+        .module("WebAppMaker", ["ngRoute", "textAngular"])
         .controller("EditWidgetController", EditWidgetController);
 
     function EditWidgetController($routeParams, $location, WidgetService) {

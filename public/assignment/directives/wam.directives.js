@@ -4,8 +4,8 @@
 
 (function() {
     angular
-        .module("WebAppMaker")
-        .directive("wbdvSortable", makeSortable);
+        .module("wamDirectives")
+        .directive("wamSortable", makeSortable);
 
     function makeSortable($routeParams, $http) {
         var pageId = $routeParams.pid;
@@ -20,7 +20,7 @@
                 },
                 stop: function(event, ui) {
                     endIndex = ui.item.index();
-                    $http.put("/api/page/" + pageId + "/widget?initial=" + startIndex + "&final=" + endIndex);
+                    $http.put("/api/page/" + pageId + "/widget?start=" + startIndex + "&end=" + endIndex);
                 }
             });
         }
