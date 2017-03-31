@@ -11,7 +11,7 @@ module.exports = function (mongoose, WebsiteModel) {
         deletePage: deletePage
     };
 
-    var PageSchema = require('./page.schema.server')();
+    var PageSchema = require('./page.schema.server')(mongoose);
     var PageModel = mongoose.model('PageModel', PageSchema);
 
     return api;

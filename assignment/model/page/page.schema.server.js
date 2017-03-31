@@ -14,4 +14,4 @@ module.exports = function (mongoose) {
     }, {collection: 'pages'});
 
     return PageSchema;
-}
+};
