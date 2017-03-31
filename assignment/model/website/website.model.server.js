@@ -2,7 +2,7 @@
  * Created by Ethan on 3/22/2017.
  */
 
-module.exports = function (UserModel) {
+module.exports = function (mongoose, UserModel) {
     var api = {
         createWebsiteForUser: createWebsiteForUser,
         findAllWebsitesForUser: findAllWebsitesForUser,
@@ -11,9 +11,7 @@ module.exports = function (UserModel) {
         deleteWebsite: deleteWebsite
     };
 
-    var mongoose = require('mongoose');
-
-    var WebsiteSchema = require('./website.schema.server')();
+    var WebsiteSchema = require('./website.schema.server')(mongoose);
     var WebsiteModel = mongoose.model('WebsiteModel', WebsiteSchema);
 
     return api;

@@ -2,7 +2,7 @@
  * Created by Ethan on 3/22/2017.
  */
 
-module.exports = function (PageModel) {
+module.exports = function (mongoose, PageModel) {
     var api = {
         createWidget: createWidget,
         findAllWidgetsForPage: findAllWidgetsForPage,
@@ -11,8 +11,6 @@ module.exports = function (PageModel) {
         deleteWidget: deleteWidget,
         reorderWidget: reorderWidget
     };
-
-    var mongoose = require('mongoose');
 
     var WidgetSchema = require('./widget.schema.server')();
     var WidgetModel = mongoose.model('WidgetModel', WidgetSchema);

@@ -2,8 +2,7 @@
  * Created by Ethan on 3/22/2017.
  */
 
-module.exports = function () {
-    var mongoose = require('mongoose');
+module.exports = function (mongoose) {
 
     var UserSchema = mongoose.Schema({
         username: String,
@@ -14,7 +13,7 @@ module.exports = function () {
         phone: String,
         websites: [{type: mongoose.Schema.Types.ObjectId, ref: 'WebsiteModel'}],
         dateCreated: {type: Date, default: Date.now()}
-    }, {collection: 'assignment.users'});
+    }, {collection: 'users'});
 
     return UserSchema;
 };

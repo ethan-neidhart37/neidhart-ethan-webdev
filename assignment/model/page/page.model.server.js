@@ -2,7 +2,7 @@
  * Created by Ethan on 3/22/2017.
  */
 
-module.exports = function (WebsiteModel) {
+module.exports = function (mongoose, WebsiteModel) {
     var api = {
         createPage: createPage,
         findAllPagesForWebsite: findAllPagesForWebsite,
@@ -10,8 +10,6 @@ module.exports = function (WebsiteModel) {
         updatePage: updatePage,
         deletePage: deletePage
     };
-
-    var mongoose = require('mongoose');
 
     var PageSchema = require('./page.schema.server')();
     var PageModel = mongoose.model('PageModel', PageSchema);

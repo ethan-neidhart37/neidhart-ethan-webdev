@@ -2,7 +2,7 @@
  * Created by Ethan on 3/22/2017.
  */
 
-module.exports = function () {
+module.exports = function (mongoose) {
     var api = {
         createUser: createUser,
         findUserById: findUserById,
@@ -12,9 +12,7 @@ module.exports = function () {
         deleteUser: deleteUser
     };
 
-    var mongoose = require('mongoose');
-
-    var UserSchema = require('./user.schema.server')();
+    var UserSchema = require('./user.schema.server')(mongoose);
     var UserModel = mongoose.model('UserModel', UserSchema);
 
     return api;
