@@ -2,6 +2,7 @@
  * Created by Ethan on 3/22/2017.
  */
 
+var q = require("q");
 module.exports = function (mongoose) {
     var api = {
         createUser: createUser,
@@ -18,26 +19,58 @@ module.exports = function (mongoose) {
     return api;
 
     function createUser(user) {
-        return UserModel.create(user);
+        console.log("Create DB: ");
+        console.log(user);
+
+        var deferred = q.defer();
+        UserModel.create(user, function (err, usr) {
+                deferred.resolve(usr);
+        });
+
+        return deferred.promise;
     }
 
     function findUserById(userId) {
-        return UserModel.findById(userId);
+        var deferred = q.defer();
+        UserModel.findById(userId, function (err, user) {
+            deferred.resolve(user);
+        });
+        return deferred.promise;
     }
 
     function findUserByUsername(username) {
-        return UserModel.find({username: username});
+        var deferred = q.defer();
+        console.log("Find DB: ");
+        console.log(username);
+        UserModel.find({username: username}, function (err, result) {
+            deferred.resolve(result);
+        });
+        return deferred.promise;
     }
 
     function findUserByCredentials(username, password) {
-        return UserModel.find({username: username, password: password});
+        var deferred = q.defer();
+        UserModel.find({username: username, password: password}, function (err, result) {
+            deferred.resolve(result);
+        });
+        return deferred.promise;
     }
 
     function updateUser(userId, user) {
-        return UserModel.update({_id: userId}, user);
+        var deferred = q.defer();
+        UserModel.findByIdAndUpdate(userId, {$set: {username: user.username, password: user.password, firstName: user.firstName, lastName: user.lastName, email: user.email, phone: user.phone, websites: user.websites, dateCreated: user.dateCreated}}, function (err, user) {
+            UserModel.findById(userId, function (err, user) {
+                deferred.resolve(user);
+            });
+        });
+        return deferred.promise;
     }
 
     function deleteUser(userId) {
-        return UserModel.remove({_id: userId});
+        var deferred = q.defer();
+        UserModel.remove({_id: userId}, function (err, result) {
+            deferred.resolve(result);
+        });
+        return deferred.promise;
     }
 };

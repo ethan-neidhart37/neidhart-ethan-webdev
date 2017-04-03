@@ -15,12 +15,17 @@
                 UserService
                     .findUserByUsername(user.username)
                     .success(function (user) {
+                        console.log("Find User: ");
+                        console.log(user);
                         vm.error = "That username is already taken.";
                     })
                     .error(function() {
                         UserService
                             .createUser(user)
                             .success(function(user) {
+                                console.log("Create User: ");
+                                console.log(user);
+
                                 $location.url('/user/' + user._id);
                             })
                             .error(function() {

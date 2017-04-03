@@ -9,22 +9,21 @@ module.exports = function (app, userModel) {
     app.put("/api/user/:userId", updateUser);
     app.delete("/api/user/:userId", deleteUser);
 
-
-    var users = [
-        {_id: "123", username: "alice", password: "alice", email: "alice@wonderland.com", firstName: "Alice", lastName: "Wonder"},
-        {_id: "234", username: "bob", password: "bob", email: "bob@marley.com", firstName: "Bob", lastName: "Marley"},
-        {_id: "345", username: "charly", password: "charly", email: "charly@garcia.com", firstName: "Charly", lastName: "Garcia"},
-        {_id: "456", username: "jannunzi", password: "jannunzi", email: "jannunzi@gmail.com", firstName: "Jose", lastName: "Annunzi"}
-    ];
-
     function createUser(req, res) {
         var newUser = req.body;
+
+        console.log("Create Server Side: ");
+        console.log(newUser);
 
         userModel
             .createUser(newUser)
             .then(function(user) {
+                console.log("Server Side create!");
+                console.log(user);
                 res.json(user);
             }, function(error) {
+                console.log("Server Side did not create...");
+                console.log(error);
                 res.status(500).send(error);
             });
 
@@ -71,8 +70,12 @@ module.exports = function (app, userModel) {
         userModel
             .findUserByUsername(username)
             .then(function(user) {
+                console.log("Server Side found!");
+                console.log(user);
                 res.send(user);
             }, function(error) {
+                console.log("Server Side did not find...");
+                console.log(error);
                 res.status(404).send(error);
             });
 
