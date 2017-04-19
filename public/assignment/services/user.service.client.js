@@ -24,9 +24,6 @@
         return api;
 
         function createUser(user) {
-            console.log("Create Client Side: ");
-            console.log(user);
-
             return $http.post("/api/user", user);
         }
 

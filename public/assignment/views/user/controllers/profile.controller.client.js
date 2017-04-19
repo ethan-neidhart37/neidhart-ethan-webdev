@@ -16,8 +16,6 @@
             UserService
                 .findUserById(vm.userId)
                 .success(function(user) {
-                    console.log("Find user by ID: ");
-                    console.log(user);
                     vm.user = user;
                 })
         }

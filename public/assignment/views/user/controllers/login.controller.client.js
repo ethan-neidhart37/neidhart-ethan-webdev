@@ -16,8 +16,6 @@
                 promise
                     .success(function (foundUser) {
                         var loginUser = foundUser;
-                        console.log("Logging on: ");
-                        console.log(foundUser);
                         if (loginUser != null && loginUser.length) {
                             loginUser = loginUser[0];
                             $location.url('/user/' + loginUser._id);

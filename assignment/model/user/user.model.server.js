@@ -19,9 +19,6 @@ module.exports = function (mongoose) {
     return api;
 
     function createUser(user) {
-        console.log("Create DB: ");
-        console.log(user);
-
         var deferred = q.defer();
         UserModel.create(user, function (err, usr) {
                 deferred.resolve(usr);
@@ -40,8 +37,6 @@ module.exports = function (mongoose) {
 
     function findUserByUsername(username) {
         var deferred = q.defer();
-        console.log("Find DB: ");
-        console.log(username);
         UserModel.find({username: username}, function (err, result) {
             deferred.resolve(result);
         });

@@ -15,13 +15,9 @@
                 UserService
                     .findUserByUsername(user.username)
                     .success(function (foundUser) {
-                        console.log("Find User: ");
-                        console.log(foundUser);
                         if (foundUser && foundUser.length === 0) {
-                            console.log("Empty list");
                             addUser(user);
                         } else {
-                            console.log("Not an empty list");
                             vm.error = "That username is already taken.";
                         }
                     })
@@ -34,9 +30,6 @@
                 UserService
                     .createUser(user)
                     .success(function(user) {
-                        console.log("Create User: ");
-                        console.log(user);
-
                         $location.url('/user/' + user._id);
                     })
                     .error(function() {
