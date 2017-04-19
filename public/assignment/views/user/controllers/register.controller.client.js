@@ -14,23 +14,33 @@
             function register(user) {
                 UserService
                     .findUserByUsername(user.username)
-                    .success(function (user) {
+                    .success(function (foundUser) {
                         console.log("Find User: ");
-                        console.log(user);
-                        vm.error = "That username is already taken.";
+                        console.log(foundUser);
+                        if (foundUser && foundUser.length === 0) {
+                            console.log("Empty list");
+                            addUser(user);
+                        } else {
+                            console.log("Not an empty list");
+                            vm.error = "That username is already taken.";
+                        }
                     })
                     .error(function() {
-                        UserService
-                            .createUser(user)
-                            .success(function(user) {
-                                console.log("Create User: ");
-                                console.log(user);
+                        addUser(user);
+                    });
+            }
 
-                                $location.url('/user/' + user._id);
-                            })
-                            .error(function() {
-                                vm.error = "Could not register user.";
-                            });
+            function addUser(user) {
+                UserService
+                    .createUser(user)
+                    .success(function(user) {
+                        console.log("Create User: ");
+                        console.log(user);
+
+                        $location.url('/user/' + user._id);
+                    })
+                    .error(function() {
+                        vm.error = "Could not register user.";
                     });
             }
         }
