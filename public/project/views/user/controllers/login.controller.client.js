@@ -7,12 +7,12 @@
         .module("ClassScheduler")
         .controller("LoginController", LoginController);
 
-        function LoginController(/*UserService, */$location) {
+        function LoginController(UserService, $location) {
             var vm = this;
             vm.login = login;
 
             function login(user) {
-                /*var promise = UserService.findUserByCredentials(user.username, user.password);
+                var promise = UserService.findUserByCredentials(user.username, user.password);
                 promise
                     .success(function (foundUser) {
                         var loginUser = foundUser;
@@ -25,9 +25,7 @@
                     })
                     .error(function (err) {
                         vm.error = err;
-                    });*/
-                $location.url('/user/123');
-
+                    });
             }
         }
 })();

@@ -6,6 +6,7 @@ var q = require("q");
 module.exports = function (mongoose, UserModel) {
     var api = {
         createCourseForUser: createCourseForUser,
+        findAllCourses: findAllCourses,
         findAllCoursesForUser: findAllCoursesForUser,
         findCourseById: findCourseById,
         updateCourse: updateCourse,
@@ -18,9 +19,9 @@ module.exports = function (mongoose, UserModel) {
 
     return api;
 
-    function createCourseForUser(userId, course) {
+    function createCourseForProfessor(userId, course) {
         var deferred = q.defer();
-        course._user = userId;
+        course._professor = userId;
 
         CourseModel.create(course, function (err, crs) {
             UserModel
@@ -33,9 +34,17 @@ module.exports = function (mongoose, UserModel) {
         return deferred.promise;
     }
 
+    function findAllCourses() {
+        var deferred = q.defer();
+        CourseModel.find({}, function (err, crs) {
+            deferred.resolve(crs);
+        });
+        return deferred.promise;
+    }
+
     function findAllCoursesForUser(userId) {
         var deferred = q.defer();
-        CourseModel.find({_user: userId}, function (err, crs) {
+        CourseModel.find({_professor: userId}, function (err, crs) {
             deferred.resolve(crs);
         });
         return deferred.promise;

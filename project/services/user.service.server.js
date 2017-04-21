@@ -28,7 +28,19 @@ module.exports = function (app, userModel) {
             findUserByCredentials(req, res);
         } else if(username) {
             findUserByUsername(req, res);
+        } else {
+            findAllUsers(res);
         }
+    }
+
+    function findAllUsers(res) {
+        userModel
+            .findAllUsers()
+            .then(function(users) {
+                res.send(users);
+            }, function(error) {
+                res.status(404).send(error);
+            });
     }
 
     function findUserByCredentials(req, res) {

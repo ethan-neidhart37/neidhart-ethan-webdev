@@ -7,16 +7,16 @@
         .module("ClassScheduler")
         .controller("RegisterController", RegisterController);
 
-        function RegisterController(/*UserService, */$location) {
+        function RegisterController(UserService, $location) {
             var vm = this;
-            vm.roles = ["Student", "Staff", "Admin"];
+            vm.roles = ["Student", "Professor", "Admin"];
             vm.register = register;
             vm.verify = "";
 
             function register(user, verify) {
                 if (user.password === verify) {
                     vm.error = user.role;
-                    /*UserService
+                    UserService
                         .findUserByUsername(user.username)
                         .success(function (foundUser) {
                             if (foundUser && foundUser.length === 0) {
@@ -27,13 +27,13 @@
                         })
                         .error(function() {
                             addUser(user);
-                        });*/
+                        });
                 } else {
                     vm.error = "Password fields must match."
                 }
             }
 
-            /*function addUser(user) {
+            function addUser(user) {
                 UserService
                     .createUser(user)
                     .success(function(user) {
@@ -42,6 +42,6 @@
                     .error(function() {
                         vm.error = "Could not register user.";
                     });
-            }*/
+            }
         }
 })();

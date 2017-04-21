@@ -17,6 +17,7 @@
 
         var api = {
             "createUser"            : createUser,
+            "findAllUsers"          : findAllUsers,
             "findUserById"          : findUserById,
             "findUserByUsername"    : findUserByUsername,
             "findUserByCredentials" : findUserByCredentials,
@@ -27,6 +28,10 @@
 
         function createUser(user) {
             return $http.post("/api/user", user);
+        }
+
+        function findAllUsers() {
+            return $http.get("/api/user");
         }
 
         function findUserById(userId) {

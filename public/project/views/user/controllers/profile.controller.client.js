@@ -7,34 +7,34 @@
         .module("ClassScheduler")
         .controller("ProfileController", ProfileController);
 
-    function ProfileController($routeParams, $location /*UserService*/) {
+    function ProfileController($routeParams, $location, UserService) {
         var vm = this;
         vm.userId = $routeParams['uid'];
         vm.unregisterUser = unregisterUser;
         vm.user = {_id: "123", username: "alice", password: "alice", email: "alice@wonderland.com", firstName: "Alice", lastName: "Wonder", role: "Student"};
 
-        /*function init() {
+        function init() {
             UserService
                 .findUserById(vm.userId)
                 .success(function(user) {
                     vm.user = user;
                 })
         }
-        init();*/
+        init();
 
         vm.update = function (newUser) {
-            /*UserService
+            UserService
                 .updateUser(vm.userId, newUser)
                 .success(function () {
                     vm.message = "User successfully updated."
                 })
                 .error(function () {
                     vm.error = "Unable to update user.";
-                });*/
+                });
         };
 
         function unregisterUser(user) {
-            /*var answer = confirm("Are you sure?");
+            var answer = confirm("Are you sure?");
 
             // TODO: needs to update classes, remove user from lists
             if (answer) {
@@ -46,7 +46,7 @@
                     .error(function () {
                         vm.error = "Unable to remove user.";
                     });
-            }*/
+            }
         }
     }
 })();

@@ -6,6 +6,7 @@ var q = require("q");
 module.exports = function (mongoose) {
     var api = {
         createUser: createUser,
+        findAllUsers: findAllUsers,
         findUserById: findUserById,
         findUserByUsername: findUserByUsername,
         findUserByCredentials: findUserByCredentials,
@@ -25,6 +26,14 @@ module.exports = function (mongoose) {
             deferred.resolve(usr);
         });
 
+        return deferred.promise;
+    }
+
+    function findAllUsers() {
+        var deferred = q.defer();
+        UserModel.find({}, function (err, result) {
+            deferred.resolve(result);
+        });
         return deferred.promise;
     }
 
