@@ -7,11 +7,20 @@
         .module("ClassScheduler")
         .controller("CourseListController", CourseListController);
 
-    function CourseListController($routeParams, CourseService) {
+    function CourseListController($routeParams, CourseService, UserService) {
         var vm = this;
         vm.userId = $routeParams.uid;
 
         function init() {
+            UserService
+                .findUserById(vm.userId)
+                .success(function (user) {
+                    vm.user = user;
+                })
+                .error(function (err) {
+                    vm.error = err;
+                });
+
             CourseService
                 .findCoursesByUser(vm.userId)
                 .success(function (courses) {
@@ -20,7 +29,46 @@
                 .error(function (err) {
                     vm.error = err;
                 });
+
+            vm.create = vm.user.role == "Admin" || vm.user.role == "Professor";
+
+            for (var c in vm.courses) {
+                vm.courses[c].participation = "";
+                vm.courses[c].modify = (vm.user.role == "Admin" || (vm.user.role == "Professor" && vm.user._id == vm.courses[c]._professor));
+                if (vm.user.role == "Professor") {
+                    if (vm.courses[c].modify) {
+                        vm.courses[c].participation = "CANCEL";
+                    } else if (vm.courses[c]._professor == "") {
+                        vm.courses[c].participation = "TEACH";
+                    }
+                } else if (vm.user.role == "Student") {
+                    vm.courses[c].participation = "TAKE";
+
+                    for (var cs in vm.user.courses) {
+                        if (vm.courses[c]._id == vm.user.courses[cs]._id) {
+                            vm.courses[c].participation = "DROP";
+                            break;
+                        }
+                    }
+                }
+            }
         }
         init();
+
+        function enroll(userId, courseId) {
+
+        }
+
+        function teach(userId, courseId) {
+
+        }
+
+        function quit(userId, courseId) {
+
+        }
+
+        function cancl(userId, courseId) {
+
+        }
     }
 })();

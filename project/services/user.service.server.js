@@ -7,6 +7,7 @@ module.exports = function (app, userModel) {
     app.get("/api/user", findUser);
     app.get("/api/user/:userId", findUserById);
     app.put("/api/user/:userId", updateUser);
+    app.put("/api/user/:userId/course/:courseId", addCourseToUser);
     app.delete("/api/user/:userId", deleteUser);
 
     function createUser(req, res) {
@@ -93,10 +94,24 @@ module.exports = function (app, userModel) {
             });
     }
 
+    function addCourseToUser(req, res) {
+        var userId = req.params['userId'];
+        var courseId = req.params['courseId'];
+
+        userModel
+            .addCourseToUser(userId, courseId)
+            .then(function(status) {
+                res.sendStatus(200);
+            }, function(error) {
+                res.sendStatus(404);
+            })
+    }
+
     function deleteUser(req, res) {
         var userId = req.params['userId'];
 
-        userModel.deleteUser(userId)
+        userModel
+            .deleteUser(userId)
             .then(function (status) {
                 res.sendStatus(200);
             }, function (error) {

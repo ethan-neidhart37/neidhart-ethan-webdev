@@ -10,6 +10,7 @@
 
         var api = {
             "createCourse"      : createCourse,
+            "findALlCourses"    : findAllCourses,
             "findCoursesByUser" : findCoursesByUser,
             "findCourseById"    : findCourseById,
             "updateCourse"      : updateCourse,
@@ -19,6 +20,10 @@
 
         function createCourse(userId, course) {
             return $http.post("/api/user/" + userId + "/course", course);
+        }
+
+        function findAllCourses() {
+            return $http.get("/api/course");
         }
 
         function findCoursesByUser(userId) {

@@ -5,13 +5,16 @@
 var q = require("q");
 module.exports = function (mongoose, UserModel) {
     var api = {
-        createCourseForUser: createCourseForUser,
+        createCourseForProfessor: createCourseForProfessor,
         findAllCourses: findAllCourses,
         findAllCoursesForUser: findAllCoursesForUser,
         findCourseById: findCourseById,
         updateCourse: updateCourse,
         deleteCourse: deleteCourse,
-        addStudentToCourse: addStudentToCourse
+        addStudentToCourse: addStudentToCourse,
+        addProfessorToCourse: addProfessorToCourse,
+        removeStudentFromCourse: removeStudentFromCourse,
+        removeProfFromCourse: removeProfFromCourse
     };
 
     var CourseSchema = require('./course.schema.server')(mongoose);
@@ -81,6 +84,47 @@ module.exports = function (mongoose, UserModel) {
         findCourseById(courseId)
             .then(function (course) {
                 course.students.push(studentId);
+                course.save(function (err, course) {
+                    deferred.resolve(course);
+                });
+            });
+        return deferred.promise;
+    }
+
+    function addProfessorToCourse(profId, courseId) {
+        var deferred = q.defer();
+        findCourseById(courseId)
+            .then(function (course) {
+                course._professor = profId;
+                course.save(function (err, course) {
+                    deferred.resolve(course);
+                });
+            });
+        return deferred.promise;
+    }
+
+    function removeStudentFromCourse(studentId, courseId) {
+        var deferred = q.defer();
+        findCourseById(courseId)
+            .then(function (course) {
+                for (var s in course.students) {
+                    if (course.students[s] == studentId) {
+                        course.students.splice(s, 1);
+                        break;
+                    }
+                }
+                course.save(function (err, course) {
+                    deferred.resolve(course);
+                });
+            });
+        return deferred.promise;
+    }
+
+    function removeProfFromCourse(profId, courseId) {
+        var deferred = q.defer();
+        findCourseById(courseId)
+            .then(function (course) {
+                course._professor = profId;
                 course.save(function (err, course) {
                     deferred.resolve(course);
                 });

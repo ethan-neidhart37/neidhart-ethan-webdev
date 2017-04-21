@@ -5,8 +5,11 @@
 module.exports = function (app, CourseModel) {
     app.post("/api/user/:userId/course", createCourse);
     app.get("/api/user/:userId/course", findCoursesByUser);
+    app.get("/api/course", findAllCourses);
     app.get("/api/course/:courseId", findCourseById);
     app.put("/api/course/:courseId", updateCourse);
+    app.put("/api/user/:userId/course/:courseId", addUserToCourse);
+    app.put("/api/user/:userId/course/:courseId/prof", addProfessorToCourse);
     app.delete("/api/course/:courseId", deleteCourse);
 
     function createCourse(req, res) {
@@ -14,7 +17,7 @@ module.exports = function (app, CourseModel) {
         var newCourse = req.body;
 
         CourseModel
-            .createCourseForUser(userId, newCourse)
+            .createCourseForProfessor(userId, newCourse)
             .then(function (course) {
                 res.json(course);
             }, function (error) {
@@ -27,8 +30,18 @@ module.exports = function (app, CourseModel) {
 
         CourseModel
             .findAllCoursesForUser(userId)
-            .then(function (sites) {
-                res.send(sites);
+            .then(function (courses) {
+                res.send(courses);
+            }, function (error) {
+                res.status(404).send(error);
+            });
+    }
+
+    function findAllCourses(req, res) {
+        CourseModel
+            .findAllCourses()
+            .then(function (courses) {
+                res.send(courses);
             }, function (error) {
                 res.status(404).send(error);
             });
@@ -57,6 +70,32 @@ module.exports = function (app, CourseModel) {
             }, function (error) {
                 res.sendStatus(404);
             });
+    }
+
+    function addUserToCourse(req, res) {
+        var userId = req.params['userId'];
+        var courseId = req.params['courseId'];
+
+        CourseModel
+            .addUserToCourse(userId, courseId)
+            .then(function(status) {
+                res.sendStatus(200);
+            }, function(error) {
+                res.sendStatus(404);
+            })
+    }
+
+    function addProfessorToCourse(req, res) {
+        var userId = req.params['userId'];
+        var courseId = req.params['courseId'];
+
+        CourseModel
+            .addProfessorToCourse(userId, courseId)
+            .then(function(status) {
+                res.sendStatus(200);
+            }, function(error) {
+                res.sendStatus(404);
+            })
     }
 
     function deleteCourse(req, res) {

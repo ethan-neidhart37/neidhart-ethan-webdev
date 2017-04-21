@@ -36,7 +36,7 @@
                 controller: 'RegisterController',
                 controllerAs: 'model'
             })
-            .when("/user/:uid/register",{
+            .when("/user/:uid/new",{
                 templateUrl: 'views/user/templates/register.view.client.html',
                 controller: 'RegisterController',
                 controllerAs: 'model'
@@ -49,32 +49,37 @@
 
             // Course
             .when("course",{
-                templateUrl: 'views/course/templates/course-list.controller.client.html',
+                templateUrl: 'views/course/templates/course-list.view.client.html',
                 controller: 'CourseListController',
                 controllerAs: 'model'
             })
+            .when("course/:cid",{
+                templateUrl: 'views/course/templates/course-details.view.client.html',
+                controller: 'CourseDetailsController',
+                controllerAs: 'model'
+            })
             .when("course/new",{
-                templateUrl: 'views/course/templates/course-new.controller.client.html',
+                templateUrl: 'views/course/templates/course-new.view.client.html',
                 controller: 'NewCourseController',
                 controllerAs: 'model'
             })
             .when("user/:uid/course",{
-                templateUrl: 'views/course/templates/course-list.controller.client.html',
+                templateUrl: 'views/course/templates/course-list.view.client.html',
                 controller: 'CourseListController',
                 controllerAs: 'model'
             })
             .when("user/:uid/course/new",{
-                templateUrl: 'views/course/templates/course-new.controller.client.html',
+                templateUrl: 'views/course/templates/course-new.view.client.html',
                 controller: 'NewCourseController',
                 controllerAs: 'model'
             })
             .when("user/:uid/course/:cid",{
-                templateUrl: 'views/course/templates/course-details.controller.client.html',
+                templateUrl: 'views/course/templates/course-details.view.client.html',
                 controller: 'CourseDetailsController',
                 controllerAs: 'model'
             })
             .when("user/:uid/course/:cid/edit",{
-                templateUrl: 'views/course/templates/course-edit.controller.client.html',
+                templateUrl: 'views/course/templates/course-edit.view.client.html',
                 controller: 'CourseEditController',
                 controllerAs: 'model'
             });
