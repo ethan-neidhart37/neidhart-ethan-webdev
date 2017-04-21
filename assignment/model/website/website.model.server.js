@@ -2,6 +2,7 @@
  * Created by Ethan on 3/22/2017.
  */
 
+var q = require("q");
 module.exports = function (mongoose, UserModel) {
     var api = {
         createWebsiteForUser: createWebsiteForUser,
@@ -17,26 +18,53 @@ module.exports = function (mongoose, UserModel) {
     return api;
 
     function createWebsiteForUser(userId, website) {
-        var user = UserModel.findUserById(userId);
-        user.websites.push(website);
-        UserModel.updateUser(userId, user);
+        var deferred = q.defer();
+        website._user = userId;
+
+        //UserModel.addWebsiteToUser(userId, website._)
         
-        return WebsiteModel.create(website);
+        WebsiteModel.create(website, function (err, web) {
+            UserModel
+                .addWebsiteToUser(userId, web._id)
+                .then(function (user) {
+                    console.log(user);
+                });
+            deferred.resolve(web);
+        });
+        return deferred.promise;
     }
     
     function findAllWebsitesForUser(userId) {
-        return WebsiteModel.find({_user: userId});
+        var deferred = q.defer();
+        WebsiteModel.find({_user: userId}, function (err, web) {
+            deferred.resolve(web);
+        });
+        return deferred.promise;
     }
 
     function findWebsiteById(websiteId) {
-        return WebsiteModel.findById(websiteId);
+        var deferred = q.defer();
+        WebsiteModel.findById(websiteId, function (err, web) {
+            deferred.resolve(web);
+        });
+        return deferred.promise;
     }
 
     function updateWebsite(websiteId, website) {
-        return WebsiteModel.update({_id: websiteId}, website);
+        var deferred = q.defer();
+        WebsiteModel.findByIdAndUpdate(websiteId, {$set: {name: website.name, description: website.description}}, function (err, web) {
+            WebsiteModel.findById(websiteId, function (err, web) {
+                deferred.resolve(web);
+            });
+        });
+        return deferred.promise;
     }
 
     function deleteWebsite(websiteId) {
-        return WebsiteModel.remove({_id: websiteId});
+        var deferred = q.defer();
+        WebsiteModel.remove({_id: websiteId}, function (err, web) {
+            deferred.resolve(web);
+        });
+        return deferred.promise;
     }
 };

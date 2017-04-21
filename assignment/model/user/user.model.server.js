@@ -10,7 +10,8 @@ module.exports = function (mongoose) {
         findUserByUsername: findUserByUsername,
         findUserByCredentials: findUserByCredentials,
         updateUser: updateUser,
-        deleteUser: deleteUser
+        deleteUser: deleteUser,
+        addWebsiteToUser: addWebsiteToUser
     };
 
     var UserSchema = require('./user.schema.server')(mongoose);
@@ -53,11 +54,23 @@ module.exports = function (mongoose) {
 
     function updateUser(userId, user) {
         var deferred = q.defer();
-        UserModel.findByIdAndUpdate(userId, {$set: {username: user.username, password: user.password, firstName: user.firstName, lastName: user.lastName, email: user.email, phone: user.phone, websites: user.websites, dateCreated: user.dateCreated}}, function (err, user) {
+        UserModel.findByIdAndUpdate(userId, {$set: {username: user.username, firstName: user.firstName, lastName: user.lastName, email: user.email}}, function (err, user) {
             UserModel.findById(userId, function (err, user) {
                 deferred.resolve(user);
             });
         });
+        return deferred.promise;
+    }
+
+    function addWebsiteToUser(userId, websiteId) {
+        var deferred = q.defer();
+        findUserById(userId)
+            .then(function (user) {
+                user.websites.push(websiteId);
+                user.save(function (err, user) {
+                    deferred.resolve(user);
+                });
+            });
         return deferred.promise;
     }
 
