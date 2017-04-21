@@ -18,14 +18,11 @@
            class="form-control"
            placeholder="Verify Password"/>
     <select ng-model="user.role"
+            ng-options="x for x in model.roles"
             class="form-control">
-        <option value=""></option>
-        <option value="Student"></option>
-        <option value="Staff"></option>
-        <option value="Admin"></option>
     </select>
     <a class="btn btn-primary btn-block"
        ng-click="model.register(user)">Register</a>
     <a class="btn btn-danger  btn-block"
-       href="#/login">Cancel</a>
+       href="#/home">Cancel</a>
 </div>

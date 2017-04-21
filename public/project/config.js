@@ -10,7 +10,7 @@
     function configuration($routeProvider) {
         $routeProvider
 
-        // User
+            // User
             .when("default",{
                 templateUrl: 'views/home.html',
                 controller: 'LoginController',
@@ -40,10 +40,10 @@
                 templateUrl: 'views/user/templates/profile.view.client.html',
                 controller: 'ProfileController',
                 controllerAs: 'model'
-            })
+            });
 
             // Website
-            .when("/user/:uid/website",{
+            /*.when("/user/:uid/website",{
                 templateUrl: 'views/website/templates/website-list.view.client.html',
                 controller: "WebsiteListController",
                 controllerAs: "model"
@@ -91,7 +91,7 @@
                 templateUrl: 'views/widget/templates/widget-edit.view.client.html',
                 controller: "EditWidgetController",
                 controllerAs: "model"
-            });
+            });*/
 
     }
 })();
