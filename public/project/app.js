@@ -4,5 +4,5 @@
 
 (function () {
     angular
-        .module("ClassScheduler", ["ngRoute", "textAngular"]);
+        .module("ClassScheduler", ["ngRoute"]);
 })();

@@ -13,11 +13,12 @@
            type="password"
            class="form-control"
            placeholder="Password"/>
-    <input type="password"
+    <input ng-model="verify"
+           type="password"
            class="form-control"
            placeholder="Verify Password"/>
     <a class="btn btn-primary btn-block"
-       ng-click="model.register(user)">Register</a>
+       ng-click="model.register(user, verify)">Register</a>
     <a class="btn btn-danger  btn-block"
        href="#/login">Cancel</a>
 </div>
