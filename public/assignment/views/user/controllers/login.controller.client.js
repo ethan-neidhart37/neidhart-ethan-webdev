@@ -26,7 +26,6 @@
                     .error(function (err) {
                         vm.error = err;
                     });
-
             }
         }
 })();
