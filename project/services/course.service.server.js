@@ -8,8 +8,10 @@ module.exports = function (app, CourseModel) {
     app.get("/api/course", findAllCourses);
     app.get("/api/course/:courseId", findCourseById);
     app.put("/api/course/:courseId", updateCourse);
-    app.put("/api/user/:userId/course/:courseId", addUserToCourse);
+    app.put("/api/user/:userId/course/:courseId/student", addStudentToCourse);
     app.put("/api/user/:userId/course/:courseId/prof", addProfessorToCourse);
+    app.put("/api/user/:userId/course/:courseId/student/remove", removeStudentFromCourse);
+    app.put("/api/user/:userId/course/:courseId/prof/remove", removeProfessorFromCourse);
     app.delete("/api/course/:courseId", deleteCourse);
 
     function createCourse(req, res) {
@@ -72,12 +74,12 @@ module.exports = function (app, CourseModel) {
             });
     }
 
-    function addUserToCourse(req, res) {
+    function addStudentToCourse(req, res) {
         var userId = req.params['userId'];
         var courseId = req.params['courseId'];
 
         CourseModel
-            .addUserToCourse(userId, courseId)
+            .addStudentToCourse(userId, courseId)
             .then(function(status) {
                 res.sendStatus(200);
             }, function(error) {
@@ -91,6 +93,32 @@ module.exports = function (app, CourseModel) {
 
         CourseModel
             .addProfessorToCourse(userId, courseId)
+            .then(function(status) {
+                res.sendStatus(200);
+            }, function(error) {
+                res.sendStatus(404);
+            })
+    }
+
+    function removeStudentFromCourse(req, res) {
+        var userId = req.params['userId'];
+        var courseId = req.params['courseId'];
+
+        CourseModel
+            .removeStudentFromCourse(userId, courseId)
+            .then(function(status) {
+                res.sendStatus(200);
+            }, function(error) {
+                res.sendStatus(404);
+            })
+    }
+
+    function removeProfessorFromCourse(req, res) {
+        var userId = req.params['userId'];
+        var courseId = req.params['courseId'];
+
+        CourseModel
+            .removeProfFromCourse(userId, courseId)
             .then(function(status) {
                 res.sendStatus(200);
             }, function(error) {

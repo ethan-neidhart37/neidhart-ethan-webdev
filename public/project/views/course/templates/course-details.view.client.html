@@ -1,7 +1,7 @@
 <nav class="navbar navbar-primary navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-text pull-left">
-            <a class="navbar-link" href="#/home">
+            <a class="navbar-link" href="#/user/{{model.userId}}/course">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
         </div>
@@ -13,18 +13,34 @@
 
 
 <div class="container-fluid">
-    <div ng-repeat="course in model.courses"  class="container-fluid">
-        <h4>
-            <a href="#/course/{{course._id}}">{{course.name}}</a>
-        </h4>
+    <h4>{{model.course.name}}</h4>
+    <p>{{model.course.description}}</p>
+
+    <div ng-switch="model.participation">
+        <div ng-switch-when="TAKE">
+            <a class="btn btn-primary btn-block"
+               ng-click="model.enroll()">Enroll</a>
+        </div>
+        <div ng-switch-when="DROP">
+            <a class="btn btn-danger btn-block"
+               ng-click="model.quit()">Drop Course</a>
+        </div>
+        <div ng-switch-when="TEACH">
+            <a class="btn btn-primary btn-block"
+               ng-click="model.teach()">Teach Course</a>
+        </div>
+        <div ng-switch-when="CANCEL">
+            <a class="btn btn-danger btn-block"
+               ng-click="model.cancl()">Stop Teaching Course</a>
+        </div>
     </div>
 </div>
 
 <nav class="navbar navbar-primary navbar-fixed-bottom">
     <div class="container-fluid">
         <div class="navbar-text pull-right">
-            <a class="navbar-link" href="#/home">
-                <span class="glyphicon glyphicon-home"></span>
+            <a class="navbar-link" href="#/user/{{model.userId}}">
+                <span class="glyphicon glyphicon-user"></span>
             </a>
         </div>
     </div>

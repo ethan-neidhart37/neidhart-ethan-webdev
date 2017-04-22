@@ -9,12 +9,16 @@
     function CourseService($http) {
 
         var api = {
-            "createCourse"      : createCourse,
-            "findALlCourses"    : findAllCourses,
-            "findCoursesByUser" : findCoursesByUser,
-            "findCourseById"    : findCourseById,
-            "updateCourse"      : updateCourse,
-            "deleteCourse"      : deleteCourse
+            "createCourse"            : createCourse,
+            "findAllCourses"          : findAllCourses,
+            "findCoursesByUser"       : findCoursesByUser,
+            "findCourseById"          : findCourseById,
+            "updateCourse"            : updateCourse,
+            "addStudentToCourse"      : addStudentToCourse,
+            "addProfToCourse"         : addProfToCourse,
+            "removeStudentFromCourse" : removeStudentFromCourse,
+            "removeProfFromCourse"    : removeProfFromCourse,
+            "deleteCourse"            : deleteCourse
         };
         return api;
 
@@ -36,6 +40,22 @@
 
         function updateCourse(courseId, newCourse) {
             return $http.put("/api/course/" + courseId, newCourse);
+        }
+
+        function addStudentToCourse(userId, courseId) {
+            return $http.put("/api/user/" + userId + "/course/" + courseId + "/student");
+        }
+
+        function addProfToCourse(userId, courseId) {
+            return $http.put("/api/user/" + userId + "/course/" + courseId + "/prof");
+        }
+
+        function removeStudentFromCourse(userId, courseId) {
+            return $http.put("/api/user/" + userId + "/course/" + courseId + "/student/remove");
+        }
+
+        function removeProfFromCourse(userId, courseId) {
+            return $http.put("/api/user/" + userId + "/course/" + courseId + "/prof/remove");
         }
 
         function deleteCourse(courseId) {

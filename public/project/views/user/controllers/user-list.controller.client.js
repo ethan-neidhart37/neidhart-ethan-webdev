@@ -9,6 +9,7 @@
 
     function UserListController($routeParams, UserService) {
         var vm = this;
+        vm.userId = $routeParams.uid;
 
         function init() {
             UserService

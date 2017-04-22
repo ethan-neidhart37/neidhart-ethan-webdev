@@ -10,6 +10,10 @@
     function CourseListController($routeParams, CourseService, UserService) {
         var vm = this;
         vm.userId = $routeParams.uid;
+        vm.enroll = enroll;
+        vm.teach = teach;
+        vm.quit = quit;
+        vm.cancl = cancl;
 
         function init() {
             UserService
@@ -38,7 +42,7 @@
                 if (vm.user.role == "Professor") {
                     if (vm.courses[c].modify) {
                         vm.courses[c].participation = "CANCEL";
-                    } else if (vm.courses[c]._professor == "") {
+                    } else if (vm.courses[c]._professor == null) {
                         vm.courses[c].participation = "TEACH";
                     }
                 } else if (vm.user.role == "Student") {
@@ -56,19 +60,47 @@
         init();
 
         function enroll(userId, courseId) {
+            CourseService
+                .addStudentToCourse(userId, courseId)
+                .success(function () {
 
+                })
+                .error(function(err) {
+                    vm.error = err;
+                })
         }
 
         function teach(userId, courseId) {
+            CourseService
+                .addProfToCourse(userId, courseId)
+                .success(function () {
 
+                })
+                .error(function(err) {
+                    vm.error = err;
+                })
         }
 
         function quit(userId, courseId) {
+            CourseService
+                .removeStudentFromCourse(userId, courseId)
+                .success(function () {
 
+                })
+                .error(function(err) {
+                    vm.error = err;
+                })
         }
 
         function cancl(userId, courseId) {
+            CourseService
+                .removeProfFromCourse(userId, courseId)
+                .success(function () {
 
+                })
+                .error(function(err) {
+                    vm.error = err;
+                })
         }
     }
 })();

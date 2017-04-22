@@ -31,10 +31,10 @@
                     <a class="btn btn-primary" ng-click="model.teach(model.userId, course._id)">Teach Course</a>
                 </span>
                 <span ng-switch-when="DROP">
-                    <a class="btn btn-primary" ng-click="model.quit(model.userId, course._id)">Drop Course</a>
+                    <a class="btn btn-danger" ng-click="model.quit(model.userId, course._id)">Drop Course</a>
                 </span>
                 <span ng-switch-when="CANCEL">
-                    <a class="btn btn-primary" ng-click="model.cancl(model.userId, course._id)">Stop Teaching Course</a>
+                    <a class="btn btn-danger" ng-click="model.cancl(model.userId, course._id)">Stop Teaching Course</a>
                 </span>
             </span>
         </h4>

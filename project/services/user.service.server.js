@@ -8,6 +8,7 @@ module.exports = function (app, userModel) {
     app.get("/api/user/:userId", findUserById);
     app.put("/api/user/:userId", updateUser);
     app.put("/api/user/:userId/course/:courseId", addCourseToUser);
+    app.put("/api/user/:userId/course/:courseId/remove", removeCourseFromUser);
     app.delete("/api/user/:userId", deleteUser);
 
     function createUser(req, res) {
@@ -100,6 +101,19 @@ module.exports = function (app, userModel) {
 
         userModel
             .addCourseToUser(userId, courseId)
+            .then(function(status) {
+                res.sendStatus(200);
+            }, function(error) {
+                res.sendStatus(404);
+            })
+    }
+
+    function removeCourseFromUser(req, res) {
+        var userId = req.params['userId'];
+        var courseId = req.params['courseId'];
+
+        userModel
+            .removeCourseFromUser(userId, courseId)
             .then(function(status) {
                 res.sendStatus(200);
             }, function(error) {

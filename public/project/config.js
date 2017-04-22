@@ -41,6 +41,16 @@
                 controller: 'RegisterController',
                 controllerAs: 'model'
             })
+            .when("/user/:uid/user2",{
+                templateUrl: 'views/user/templates/user-list.view.client.html',
+                controller: 'UserListController',
+                controllerAs: 'model'
+            })
+            .when("/user/:uid/user2/:u2id",{
+                templateUrl: 'views/user/templates/profile.view.client.html',
+                controller: 'AdminProfileController',
+                controllerAs: 'model'
+            })
             .when("/user/:uid",{
                 templateUrl: 'views/user/templates/profile.view.client.html',
                 controller: 'ProfileController',
@@ -49,18 +59,13 @@
 
             // Course
             .when("course",{
-                templateUrl: 'views/course/templates/course-list.view.client.html',
+                templateUrl: 'views/course/templates/no-user/course-list.view.client.html',
                 controller: 'CourseListController',
                 controllerAs: 'model'
             })
             .when("course/:cid",{
-                templateUrl: 'views/course/templates/course-details.view.client.html',
+                templateUrl: 'views/course/templates/no-user/course-details.view.client.html',
                 controller: 'CourseDetailsController',
-                controllerAs: 'model'
-            })
-            .when("course/new",{
-                templateUrl: 'views/course/templates/course-new.view.client.html',
-                controller: 'NewCourseController',
                 controllerAs: 'model'
             })
             .when("user/:uid/course",{

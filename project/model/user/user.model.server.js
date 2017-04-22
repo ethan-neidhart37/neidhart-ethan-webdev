@@ -12,7 +12,8 @@ module.exports = function (mongoose) {
         findUserByCredentials: findUserByCredentials,
         updateUser: updateUser,
         deleteUser: deleteUser,
-        addCourseToUser: addCourseToUser
+        addCourseToUser: addCourseToUser,
+        removeCourseFromUser: removeCourseFromUser
     };
 
     var UserSchema = require('./user.schema.server')(mongoose);
@@ -84,6 +85,23 @@ module.exports = function (mongoose) {
         findUserById(userId)
             .then(function (user) {
                 user.courses.push(courseId);
+                user.save(function (err, user) {
+                    deferred.resolve(user);
+                });
+            });
+        return deferred.promise;
+    }
+
+    function removeCourseFromUser(userId, courseId) {
+        var deferred = q.defer();
+        findUserById(userId)
+            .then(function (user) {
+                for (var c in user.courses) {
+                    if (user.courses[c] == courseId) {
+                        user.courses.splice(c, 1);
+                        break;
+                    }
+                }
                 user.save(function (err, user) {
                     deferred.resolve(user);
                 });
