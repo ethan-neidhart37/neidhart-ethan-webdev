@@ -12,23 +12,17 @@
 
             // User
             .when("default",{
-                templateUrl: 'views/home.html',
-                controller: 'LoginController',
-                controllerAs: 'model'
+                templateUrl: 'views/home.html'
             })
             .when("/",{
-                templateUrl: 'views/home.html',
-                controller: 'LoginController',
-                controllerAs: 'model'
+                templateUrl: 'views/home.html'
             })
             .when("/home",{
-                templateUrl: 'views/home.html',
-                controller: 'LoginController',
-                controllerAs: 'model'
+                templateUrl: 'views/home.html'
             })
             .when("/login",{
                 templateUrl: 'views/user/templates/login.view.client.html',
-                controller: 'LoginController',
+                controller: 'ProjectLoginController',
                 controllerAs: 'model'
             })
             .when("/register",{

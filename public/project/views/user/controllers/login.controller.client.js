@@ -1,18 +1,14 @@
-/**
- * Created by Ethan on 2/15/2017.
- */
-
 (function() {
     angular
         .module("ClassScheduler")
-        .controller("LoginController", LoginController);
+        .controller("ProjectLoginController", ProjectLoginController);
 
-        function LoginController(UserService, $location) {
+        function ProjectLoginController(ProjectUserService, $location) {
             var vm = this;
             vm.login = login;
 
             function login(user) {
-                var promise = UserService.findUserByCredentials(user.username, user.password);
+                var promise = ProjectUserService.findUserByCredentials(user.username, user.password);
                 promise
                     .success(function (foundUser) {
                         var loginUser = foundUser;

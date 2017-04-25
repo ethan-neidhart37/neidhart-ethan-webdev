@@ -5,9 +5,9 @@
 (function () {
     angular
         .module("ClassScheduler")
-        .factory("UserService", UserService);
+        .factory("ProjectUserService", ProjectUserService);
 
-    function UserService($http) {
+    function ProjectUserService($http) {
 
         var api = {
             "createUser"            : createUser,
