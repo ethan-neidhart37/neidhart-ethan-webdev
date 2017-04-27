@@ -22,7 +22,7 @@
             })
             .when("/login",{
                 templateUrl: 'views/user/templates/login.view.client.html',
-                controller: 'ProjectLoginController',
+                controller: 'LoginController',
                 controllerAs: 'model'
             })
             .when("/register",{

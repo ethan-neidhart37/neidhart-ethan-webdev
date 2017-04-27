@@ -5,7 +5,7 @@
 (function () {
     angular
         .module("ClassScheduler")
-        .factory("ProjectUserService", ProjectUserService);
+        .factory("UserService", UserService);
 
     function ProjectUserService($http) {
 
